@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;net462</TargetFrameworks>
+    <TargetFrameworks>net472;net462;net10.0-windows10.0.19041.0</TargetFrameworks>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <DefineConstants Condition="'$(TargetFramework)' != 'net6.0' AND '$(TargetFramework)' != 'netstandard1.3'">$(DefineConstants);SYSTEM_DRAWING</DefineConstants>
     <DefineConstants Condition="'$(TargetFramework)' == 'net5.0-windows'">$(DefineConstants);NET5_0_WINDOWS</DefineConstants>
@@ -10,6 +10,7 @@
     <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))">true</IsTrimmable>
     <WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors>
     <Nullable>enable</Nullable>
+    <DefineConstants Condition="'$(TargetFramework)' == 'net10.0-windows10.0.19041.0'">$(DefineConstants);NET6_0_WINDOWS</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -54,6 +55,9 @@
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0-windows' ">
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net10.0-windows10.0.19041.0' ">
+    <PackageReference Include="System.Drawing.Common" Version="10.0.7" />
   </ItemGroup>
 
   <PropertyGroup>
