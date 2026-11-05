@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <TargetFrameworks>net472;net462;net10.0</TargetFrameworks>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <DefineConstants Condition="'$(TargetFramework)' != 'net6.0' AND '$(TargetFramework)' != 'netstandard1.3'">$(DefineConstants);SYSTEM_DRAWING</DefineConstants>

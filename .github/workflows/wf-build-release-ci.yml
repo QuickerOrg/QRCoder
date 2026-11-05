@@ -4,8 +4,9 @@ on:
     branches:
       - master  
   workflow_dispatch:
-jobs:  
-  build: 
+jobs:
+  build:
+    if: github.repository == 'codebude/QRCoder'
     runs-on: windows-2019 
     env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: true
@@ -36,6 +37,7 @@ jobs:
         path: D:\a\qrcoder\qrcoder
 
   test:
+    if: github.repository == 'codebude/QRCoder'
     needs: build 
     runs-on: windows-2019
     steps:   
@@ -138,6 +140,7 @@ jobs:
 
 
   pack-push-ci:
+    if: github.repository == 'codebude/QRCoder'
     needs: test
     runs-on: windows-2019
     env:
@@ -191,8 +194,8 @@ jobs:
       
     
   clean:
+    if: always() && github.repository == 'codebude/QRCoder'
     needs: [build, test, pack-push-ci]
-    if: always()
     runs-on: windows-2019
     steps:
     - name: Delete artifacts

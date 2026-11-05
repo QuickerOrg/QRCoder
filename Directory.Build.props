@@ -1,4 +1,7 @@
 <Project>
+  <PropertyGroup Condition="'$(Platform)' == 'ARM64'">
+    <ArtifactsProjectName>$(MSBuildProjectName)_ARM64</ArtifactsProjectName>
+  </PropertyGroup>
   <PropertyGroup>
     <LangVersion>10</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
