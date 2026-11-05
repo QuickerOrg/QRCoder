@@ -1,0 +1,23 @@
+name: Quicker fork validation
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  portable-build-and-smoke:
+    if: github.repository == 'QuickerOrg/QRCoder'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+      - name: Validate portable libraries and generate a QR PNG
+        shell: pwsh
+        run: ./tools/Test-QuickerFork.ps1

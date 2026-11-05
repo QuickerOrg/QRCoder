@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 jobs:
   build:
+    if: github.repository == 'codebude/QRCoder'
     runs-on: windows-2019 
     env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: true
@@ -36,6 +37,7 @@ jobs:
         path: D:\a\qrcoder\qrcoder
 
   test:
+    if: github.repository == 'codebude/QRCoder'
     needs: build 
     runs-on: windows-2019
     steps:   
@@ -96,8 +98,8 @@ jobs:
       run: dotnet test -c Release --nologo --no-build
 
   clean:
+    if: always() && github.repository == 'codebude/QRCoder'
     needs: [build, test]
-    if: always()
     runs-on: windows-2019
     steps:
     - name: Delete artifacts
